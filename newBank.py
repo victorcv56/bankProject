@@ -22,18 +22,29 @@ class bankCards:
         #print("You will pay a total of {:.2f} monthly interest.".format(interest / 12))
         return interest
     
-    def make_paymt(self):
+    def make_paymt(self, payment):
         """Method that will make a payment towards card balance."""
-        payment = int(input("Payment amount: "))
+        # payment = int(input("Payment amount: "))
         self.bal -= payment
         print("{} paid towards card. \nNew balance is {:.2f}".format(payment, self.bal))
 
+    # figured out monthly minimum payment algo
     def minimum_pymt(self):
-        """This will calculate monthly fee of credit card."""
+        """This will calculate monthly minimum payment on CC."""
         fee = (self.bal * 0.01) + (self.get_interest() / 12)
         #monthly_minimum = fee 
         print("fee will be {}".format(fee))
         return fee
+
+    def pay_off_min_payments(self):
+        """Loop that will pay off credit card and return months taken to pay off debt."""
+        months = 0
+        while self.bal >= 60: # while loop that will run until balance is paid off
+            self.make_paymt(self.minimum_pymt()) # calls on the make payment method to simulate a payment being made
+            months += 1
+            print('Remaining balance: {}'.format(self.bal))
+            
+        return months
 
 # This class only has to have methods that pertain to things a credit card
 # can do or can be done to like getting certain calculations nd
@@ -48,3 +59,5 @@ print(barclays)
 print(barclays.get_interest())
 monthly_fee = barclays.minimum_pymt()
 print('Monthly min pament is {}'.format(monthly_fee))
+
+print(barclays.pay_off_min_payments())
