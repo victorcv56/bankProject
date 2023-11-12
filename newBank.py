@@ -16,11 +16,11 @@ class bankCards:
         a brief description of object."""
         return "{} card has {}% APR and {} balance.".format(self.name, self.apr, self.bal)
     
-    def get_interest(self):
+    def get_monthly_interest(self):
         """Attempt to get what we will pay in interest on card."""
         interest = self.bal * (self.apr / 100) # Multiply apr by balance to get interest.
         #print("You will pay a total of {:.2f} monthly interest.".format(interest / 12))
-        return interest
+        return interest / 12
     
     def make_paymt(self, payment):
         """Method that will make a payment towards card balance."""
@@ -29,15 +29,15 @@ class bankCards:
         print("{} paid towards card. \nNew balance is {:.2f}".format(payment, self.bal))
 
     # figured out monthly minimum payment algo
-    def monthly_interest_charge(self):
-        """Method that calculates the monthly interest payment for card."""
-        fee = (self.bal * 0.01) + (self.get_interest() / 12) #monthly interest paid
-        print(fee)
+    # def monthly_interest_charge(self):
+    #     """Method that calculates the monthly interest payment for card."""
+    #     fee = (self.bal * 0.01) + (self.get_interest() / 12) #monthly interest paid
+    #     return fee
     
     
     def minimum_pymt(self):
         """This will calculate monthly minimum payment on CC."""
-        fee = (self.bal * 0.01) + (self.get_interest() / 12) #monthly interest paid
+        fee = (self.bal * 0.01) + self.get_monthly_interest()  #monthly interest paid
         print("fee will be {}".format(fee))
         return fee
 
@@ -51,12 +51,17 @@ class bankCards:
             
         return months
 
-    # def pay_off_in_given_time(self):
-    #     """Method will return how much user will have to pay monthly
-    #     if they want to pay off debt in given amount of time."""
-    #     months = int(input("Time needed to pay off card(months): "))
-    #     monthly_bal = self.bal / months
-    #     print(monthly bal)
+    def pay_off_in_given_time(self):
+        """Method will return how much user will have to pay monthly
+        if they want to pay off debt in given amount of time."""
+        months = int(input("Time needed to pay off card(months): "))
+        monthly_pymt = (self.bal / months) + (self.get_monthly_interest() / 12) # monthly payment towards card
+        print(monthly_pymt)
+        # while self.bal >= 1: # loop that will continually make payments until balance is 0
+        #     self.bal -= (monthly_pymt - self.get_monthly_interest())
+        #     print("Payment of ")
+
+        
 
 
 # This class only has to have methods that pertain to things a credit card
@@ -69,7 +74,8 @@ class bankCards:
 # Initializes card with given attributes
 barclays = bankCards('Barclays', 29.99, 1511.06)
 print(barclays)
-print(barclays.get_interest())
+print(barclays.get_monthly_interest())
 monthly_fee = barclays.minimum_pymt()
 print('Monthly minimum payment is {}'.format(monthly_fee))
 
+barclays.pay_off_in_given_time()
