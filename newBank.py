@@ -29,22 +29,35 @@ class bankCards:
         print("{} paid towards card. \nNew balance is {:.2f}".format(payment, self.bal))
 
     # figured out monthly minimum payment algo
+    def monthly_interest_charge(self):
+        """Method that calculates the monthly interest payment for card."""
+        fee = (self.bal * 0.01) + (self.get_interest() / 12) #monthly interest paid
+        print(fee)
+    
+    
     def minimum_pymt(self):
         """This will calculate monthly minimum payment on CC."""
-        fee = (self.bal * 0.01) + (self.get_interest() / 12)
-        #monthly_minimum = fee 
+        fee = (self.bal * 0.01) + (self.get_interest() / 12) #monthly interest paid
         print("fee will be {}".format(fee))
         return fee
 
     def pay_off_min_payments(self):
         """Loop that will pay off credit card and return months taken to pay off debt."""
         months = 0
-        while self.bal >= 60: # while loop that will run until balance is paid off
+        while self.bal >= 1: # while loop that will run until balance is paid off
             self.make_paymt(self.minimum_pymt()) # calls on the make payment method to simulate a payment being made
             months += 1
             print('Remaining balance: {}'.format(self.bal))
             
         return months
+
+    # def pay_off_in_given_time(self):
+    #     """Method will return how much user will have to pay monthly
+    #     if they want to pay off debt in given amount of time."""
+    #     months = int(input("Time needed to pay off card(months): "))
+    #     monthly_bal = self.bal / months
+    #     print(monthly bal)
+
 
 # This class only has to have methods that pertain to things a credit card
 # can do or can be done to like getting certain calculations nd
@@ -58,6 +71,5 @@ barclays = bankCards('Barclays', 29.99, 1511.06)
 print(barclays)
 print(barclays.get_interest())
 monthly_fee = barclays.minimum_pymt()
-print('Monthly min pament is {}'.format(monthly_fee))
+print('Monthly minimum payment is {}'.format(monthly_fee))
 
-print(barclays.pay_off_min_payments())
