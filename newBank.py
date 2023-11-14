@@ -1,4 +1,4 @@
-import math
+# import math
 """Simple program to practice python objects"""
 
 class bankCards: 
@@ -8,13 +8,13 @@ class bankCards:
         """function that will be automatically 
         called when creating object."""
         self.name = cardBank
-        self.apr = cardApr #converts to decimal for easy calculation
+        self.apr = cardApr  
         self.bal = cardBal
 
     def __str__(self):
         """String function that will print out 
         a brief description of object."""
-        return "{} card has {}% APR and {} balance.".format(self.name, self.apr, self.bal)
+        return "{} card has {} balance with {}% APR.".format(self.name, self.bal, self.apr)
     
     def get_monthly_interest(self):
         """Attempt to get what we will pay in interest on card."""
@@ -26,14 +26,7 @@ class bankCards:
         """Method that will make a payment towards card balance."""
         # payment = int(input("Payment amount: "))
         self.bal -= payment
-        print("{} paid towards card. \nNew balance is {:.2f}".format(payment, self.bal))
-
-    # figured out monthly minimum payment algo
-    # def monthly_interest_charge(self):
-    #     """Method that calculates the monthly interest payment for card."""
-    #     fee = (self.bal * 0.01) + (self.get_interest() / 12) #monthly interest paid
-    #     return fee
-    
+        print("{} paid towards card. \nNew balance is {:.2f}".format(payment, self.bal))    
     
     def minimum_pymt(self):
         """This will calculate monthly minimum payment on CC."""
@@ -55,13 +48,18 @@ class bankCards:
         """Method will return how much user will have to pay monthly
         if they want to pay off debt in given amount of time."""
         months = int(input("Time needed to pay off card(months): "))
-        monthly_pymt = (self.bal / months) + (self.get_monthly_interest() / 12) # monthly payment towards card
-        print(monthly_pymt)
-        # while self.bal >= 1: # loop that will continually make payments until balance is 0
-        #     self.bal -= (monthly_pymt - self.get_monthly_interest())
-        #     print("Payment of ")
+        pymt = (self.bal / months) + self.get_monthly_interest()
+        for month in range(months):
+            self.bal -= pymt # makes payment towards balance
+            # print("Made payment of {:.2f}, balance is now: {:.2f}".format(pymt, self.bal))
+            self.bal += self.get_monthly_interest() # adds in monthly interest fee
+            # print("Added {:.2f} interest charge to balance. Balance is now: {:.2f}\n".format(self.get_monthly_interest(), self.bal))
+            if self.bal < pymt:
+                print("If {:.2f} is paid monthly towards {} card, it will take "
+                      "{} months to pay off.".format(pymt, self.name, month))
+                break
 
-        
+
 
 
 # This class only has to have methods that pertain to things a credit card
@@ -70,12 +68,3 @@ class bankCards:
 
 # I want to come up with a method that lets me make payments considering
 # the monthly charge made.
-
-# Initializes card with given attributes
-barclays = bankCards('Barclays', 29.99, 1511.06)
-print(barclays)
-print(barclays.get_monthly_interest())
-monthly_fee = barclays.minimum_pymt()
-print('Monthly minimum payment is {}'.format(monthly_fee))
-
-barclays.pay_off_in_given_time()
