@@ -10,17 +10,25 @@ class logger:
         print("Initializing writer method.")
 
     def create_new_file(self):
-        """Create a new file to write to. 
-        Will overwrite any information on file."""
+        """Create a new file to write to."""
         f = open(self.filename, "x")
         f.close()
         return f
     
     def write_to_file(self, data):
-        """Write info to file."""
+        """Write info to file, overwriting other data."""
         f = open(self.filename, 'w')
         f.write(data)
+        f.close()
 
+    def add_to_file(self, data):
+        "Appends data to existing file."
+        f = open(self.filename, 'a')
+        f.write(data + "\n")
+        f.close()
 
-newLog = logger("newfile.txt")
-newLog.write_to_file()
+    def read_from_file(self):
+        """Will read data from file."""
+        f = open(self.filename, 'r')
+        print(f.read())
+
