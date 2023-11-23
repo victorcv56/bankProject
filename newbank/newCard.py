@@ -45,10 +45,13 @@ class bankCards:
         return fee
 
     def pay_off_min_payments(self):
-        """Loop that will pay off credit card and return months taken to pay off debt."""
+        """Loop that will pay off credit card and return months taken to pay off debt
+        only giving minimum payments to card."""
         months = 0
-        while self.bal >= 1: # while loop that will run until balance is paid off
-            self.make_paymt(self.get_minimum_pymt()) # calls on the make payment method to simulate a payment being made
+        while self.bal >= 1: 
+            # while loop that will run until balance is paid off
+            self.make_paymt(self.get_minimum_pymt()) 
+            # calls on the make payment method to simulate a payment being made
             months += 1
             print('Remaining balance: {}'.format(self.bal))
             

@@ -20,18 +20,25 @@ print(amazon_interest)
 
 
 print("")
-prompt = input("Would you like to create a new file(y/n):\n ")
+filename = input("Enter name of file to work with: \n")
+fo = l(filename)
 
-if prompt == 'y':
-    filename = input("Please enter name of file: ")
-    fo = l(filename)
-    fo.create_new_file()
-else:
-    filename = input("Please enter name of existing file:\n ")
-    fo = l(filename)
+ans = input("Would you like to read(r) or write(w) to file:\n ")
+if (ans == 'r') or (ans == 'read'):
+    fo.read_from_file()
 
-fo.add_to_file(wells_interest)
-fo.add_to_file(amazon_interest)
-fo.add_to_file(barclays_interest)
+if (ans == 'w') or (ans == 'write'):
+    write_or_append = input("Would you like to write to a new"
+                            "file or add to existing file: \n")
+# if prompt == 'w':
+#     filename = input("Please enter name of file: ")
+#     fo = l(filename)
+#     fo.create_new_file()
+# else:
+#     filename = input("Please enter name of existing file:\n ")
+#     fo = l(filename)
+
+# fo.add_to_file(wells_interest)
+# fo.add_to_file(amazon_interest)
+# fo.add_to_file(barclays_interest)
 #fo.write_to_file(barclays_interest) # write_to_file method will overwrite all data...
-fo.read_from_file()
