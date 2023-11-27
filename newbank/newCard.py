@@ -1,4 +1,4 @@
-# import math
+from writer import logger as l
 """Simple program to practice python objects"""
 
 class bankCards: 
@@ -10,16 +10,21 @@ class bankCards:
         self.name = cardBank
         self.apr = cardApr  
         self.bal = cardBal
+        # do i want to instantiate logger here or make a method...
+        # or i could make a method that would write everything at once...
+        
 
     def __str__(self):
         """String function that will print out 
         a brief description of object."""
-        return "{} card has {} balance with {}% APR.".format(self.name, self.bal, self.apr)
+        return "{} card has {} balance with {}% APR.\n".format(self.name, self.bal, self.apr) 
+        
     
     def get_total_interest(self):
         """Calculates total interest charge on credit card."""
         total_interest = self.bal * (self.apr / 100)
-        return "Total interest on {} card is {:.2f}".format(self.name, total_interest)
+        # return "Total interest on {} card is {:.2f}".format(self.name, total_interest)
+        return total_interest
     
     def get_monthly_interest(self):
         """Attempt to get what we will pay in interest on card."""
@@ -31,7 +36,7 @@ class bankCards:
         """Method that will make a payment towards card balance."""
         # payment = int(input("Payment amount: "))
         self.bal -= payment
-        print("{} paid towards card. \nNew balance is {:.2f}".format(payment, self.bal))    
+        # print("{:.2f} paid towards card. \nNew balance is {:.2f}".format(payment, self.bal))    
     
     def add_late_fee(self):
         """Add late fee to balance if client does not pay."""
@@ -41,19 +46,22 @@ class bankCards:
     def get_minimum_pymt(self):
         """This will calculate monthly minimum payment on CC."""
         fee = (self.bal * 0.01) + self.get_monthly_interest()  #monthly interest paid
-        print("fee will be {}".format(fee))
+        print("minimum payment will be {:.2f}".format(fee))
         return fee
 
     def pay_off_min_payments(self):
         """Loop that will pay off credit card and return months taken to pay off debt
         only giving minimum payments to card."""
         months = 0
-        while self.bal >= 1: 
+        min_payment = self.get_minimum_pymt()
+        while self.bal >= 100: 
             # while loop that will run until balance is paid off
-            self.make_paymt(self.get_minimum_pymt()) 
+            self.make_paymt(min_payment) 
             # calls on the make payment method to simulate a payment being made
+            self.bal += self.get_monthly_interest()
+            # will add monthly fee on credit card
             months += 1
-            print('Remaining balance: {}'.format(self.bal))
+            # print('Remaining balance: {:.2f}'.format(self.bal))
             
         return months
 
@@ -72,7 +80,27 @@ class bankCards:
                       "{} months to pay off.".format(pymt, self.name, month))
                 break
 
+    def write_data(self):
+        """A method that will create a file for card object
+        and write information for card in a new text file."""
+        filename = "{}.txt".format(self.name)
+        # initialize writer object 
+        writer = l(filename)
+        
+        # storing data in variables to write to file 
+        data = "{} card has {} balance with {}% APR.\n".format(self.name, self.bal, self.apr) 
+        writer.write_to_file(data)
 
+        minimum_pymt = "\nYour {} card's minimum payment is {:.2f}".format(self.name, self.get_minimum_pymt())
+        writer.add_to_file(minimum_pymt)
+
+        more_data = "\n{} card will be paid off in {} months if only min \npayment is given.".format(self.name, self.pay_off_min_payments())
+        writer.add_to_file(more_data)
+        
+        
+        
+
+        
 # This class only has to have methods that pertain to things a credit card
 # can do or can be done to like getting certain calculations nd
 # showing different traits
