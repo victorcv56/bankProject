@@ -45,21 +45,23 @@ class bankCards:
 
     def get_minimum_pymt(self):
         """This will calculate monthly minimum payment on CC."""
-        fee = (self.bal * 0.01) + self.get_monthly_interest()  #monthly interest paid
-        print("minimum payment will be {:.2f}".format(fee))
-        return fee
+        # monthly minimum card payment
+        min_payment = (self.bal * 0.01) + self.get_monthly_interest()  
+        # print("{} card minimum payment: {:.2f}".format(self.name, min_payment))
+        return min_payment
 
     def pay_off_min_payments(self):
         """Loop that will pay off credit card and return months taken to pay off debt
         only giving minimum payments to card."""
         months = 0
         min_payment = self.get_minimum_pymt()
+        # while loop that will run until balance is paid off
         while self.bal >= 100: 
-            # while loop that will run until balance is paid off
-            self.make_paymt(min_payment) 
-            # calls on the make payment method to simulate a payment being made
-            self.bal += self.get_monthly_interest()
+            # calls on the make payment method to simulate a payment being made            
+            self.make_paymt(min_payment)
             # will add monthly fee on credit card
+            self.bal += self.get_monthly_interest()
+            # add 1 every iteration to months var to simulate monthly payments
             months += 1
             # print('Remaining balance: {:.2f}'.format(self.bal))
             
@@ -88,14 +90,14 @@ class bankCards:
         writer = l(filename)
         
         # storing data in variables to write to file 
-        data = "{} card has {} balance with {}% APR.\n".format(self.name, self.bal, self.apr) 
-        writer.write_to_file(data)
-
+        card_data = "{} card has {} balance with {}% APR.\n".format(self.name, self.bal, self.apr) 
+        writer.write_to_file(card_data)
+        
         minimum_pymt = "\nYour {} card's minimum payment is {:.2f}".format(self.name, self.get_minimum_pymt())
         writer.add_to_file(minimum_pymt)
 
-        more_data = "\n{} card will be paid off in {} months if only min \npayment is given.".format(self.name, self.pay_off_min_payments())
-        writer.add_to_file(more_data)
+        minimum_payment_data = "\n{} card will be paid off in {} months if only min \npayment is given.".format(self.name, self.pay_off_min_payments())
+        writer.add_to_file(minimum_payment_data)
         
         
         
