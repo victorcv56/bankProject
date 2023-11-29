@@ -2,4 +2,5 @@ Amazon.txt
 Barclays.txt
 cardFile.txt 
 Wells Fargo.txt 
-__pycache__/
+__pycache__
+../__pycache__/
