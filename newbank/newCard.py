@@ -100,9 +100,6 @@ class bankCards:
         writer.add_to_file(minimum_payment_data)
         
         
-        
-
-        
-# This class only has to have methods that pertain to things a credit card
-# can do or can be done to like getting certain calculations nd
-# showing different traits
+# Tried creating a dictionary class to complement this object and store
+# object's information inside a nested dictionary. I will have to
+# come back with a better understanding of dictionaries for that. 
