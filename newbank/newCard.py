@@ -19,6 +19,17 @@ class bankCards:
         a brief description of object."""
         return "{} card has {} balance with {}% APR.\n".format(self.name, self.bal, self.apr) 
         
+    def get_apr(self):
+        """Return card object's apr."""
+        return self.apr
+    
+    def get_bal(self):
+        """Return card object's balance."""
+        return self.bal
+    
+    def get_name(self):
+        """Return card object's name."""
+        return self.name
     
     def get_total_interest(self):
         """Calculates total interest charge on credit card."""
@@ -102,4 +113,4 @@ class bankCards:
         
 # Tried creating a dictionary class to complement this object and store
 # object's information inside a nested dictionary. I will have to
-# come back with a better understanding of dictionaries for that. 
+# come back with a better understanding of dictionaries for that. j
