@@ -7,7 +7,7 @@ class logger:
     def __init__(self, filename):
         """Initializes object and lets user know."""
         self.filename = filename
-        print("Initializing writer method.")
+        # print("Initializing writer method.")
 
     def create_new_file(self):
         """Asks user if they want to create a new file to write to."""
