@@ -29,6 +29,7 @@ print(barclays_interest)
 amazon_interest = "{} card total interest: ${:.2f}".format(amazon.name, amazon.get_total_interest())
 print(amazon_interest)
 
+
 amazon.write_data() # writes data to .txt file
 barclays.write_data() # writes data to .txt file
 wells.write_data() # writes data to .txt file

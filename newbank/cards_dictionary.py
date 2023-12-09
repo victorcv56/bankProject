@@ -1,4 +1,5 @@
 import pprint
+from writer import logger as log
 """Creating a dictionary of credit cards to manipulate data"""
 
 class cardList:
@@ -19,6 +20,9 @@ class cardList:
             card_name = card.get_name()
             new_Card = {card_name: {'apr': card_apr, 'balance': card_bal}} 
             self.cards.update(new_Card)
+
+        logger = log('cardList.json')
+        logger.write_dictionary(self.cards)
 
     def show_dictionary(self):
         """Print dictionary to screen."""

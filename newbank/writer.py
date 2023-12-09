@@ -1,3 +1,4 @@
+import json # import to write dicitonary to .txt 
 """An attempt to create a filewriter object to be able to document all credit card objects."""
 
 class logger:
@@ -15,6 +16,12 @@ class logger:
         print("Created new file {}.".format(self.filename))
         f.close()
     
+    def write_dictionary(self, dictionary):
+        """Write dictionary to JSON into .txt"""
+        with open(self.filename, 'w') as fo:
+            for items in dictionary:
+                fo.write(json.dumps(items))
+
     def write_to_file(self, data):
         """Write info to file, overwriting other data."""
         f = open(self.filename, 'w')
