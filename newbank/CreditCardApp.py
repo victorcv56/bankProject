@@ -18,6 +18,7 @@ card_dict.show_dictionary()
 
 
 print("")
+
 # Calculates card's interest using class method, 
 # then displays it for user
 wells_interest = "{} card total interest: ${:.2f}".format(wells.name, wells.get_total_interest())
@@ -29,12 +30,13 @@ print(barclays_interest)
 amazon_interest = "{} card total interest: ${:.2f}".format(amazon.name, amazon.get_total_interest())
 print(amazon_interest)
 
-
+# added writer module to keep track of card info on .txt files
 amazon.write_data() # writes data to .txt file
 barclays.write_data() # writes data to .txt file
 wells.write_data() # writes data to .txt file
 
-amazon_apr = "{}'s APR: {}%".format(amazon.name, amazon.apr)
+# amazon_apr = "{}'s APR: {}%".format(amazon.name, amazon.apr)
+amazon_apr = amazon.get_apr()
 print(amazon_apr)
 
 # Add time methods? learn python time lib to be able to assimilate to 

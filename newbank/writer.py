@@ -19,8 +19,8 @@ class logger:
     def write_dictionary(self, dictionary):
         """Write dictionary to JSON into .txt"""
         with open(self.filename, 'w') as fo:
-            for items in dictionary:
-                fo.write(json.dumps(items))
+            for cards in dictionary.items():
+                fo.write(json.dumps(cards) + "\n")
 
     def write_to_file(self, data):
         """Write info to file, overwriting other data."""

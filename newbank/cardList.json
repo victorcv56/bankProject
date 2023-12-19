@@ -1,1 +1,3 @@
-"Barclays""Wells""Amazon"
+["Barclays", {"apr": 29.99, "balance": 1511.65}]
+["Wells", {"apr": 19.24, "balance": 10141.16}]
+["Amazon", {"apr": 27.49, "balance": 6748.22}]
