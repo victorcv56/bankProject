@@ -9,7 +9,7 @@ class cardList:
         """Initializes an empty dictionary that will be filled
         by user."""
         # self.card_list = card_list
-        self.cards = {}
+        self.cards = {} # initialize an empty dictionary
 
     def add_to_nested(self, card_list): 
         """Try to add to nested dictionary."""

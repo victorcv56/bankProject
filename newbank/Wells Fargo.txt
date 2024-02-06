@@ -1,0 +1,6 @@
+Wells Fargo card has 10543.23 balance with 19.99% APR.
+
+Your Wells Fargo card's minimum payment is 281.06
+
+Wells Fargo card will be paid off in 58 months if only min 
+payment is given.
