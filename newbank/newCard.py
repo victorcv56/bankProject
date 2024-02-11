@@ -1,4 +1,9 @@
-from writer import logger as l
+from writer import write_data as l
+# writer is imported so information on cards is written to a .txt
+# file and easily accesed by user. 
+# Information like how many months it will take to pay credit card, 
+# how much should be paid each month in order to pay off card in a 
+# certain amount of time, etc..
 """Simple program to practice python objects"""
 
 class bankCards: 

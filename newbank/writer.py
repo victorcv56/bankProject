@@ -1,9 +1,11 @@
 import json # import to write dicitonary to .txt 
 """An attempt to create a filewriter object to be able to document all credit card objects."""
 
-class logger:
+class data_writer:
     """Will contain different method to which we will be able to write and 
-    append to new files our data."""
+    append to new files our data.
+    This will write data to a JSON file in order to have access to python
+    dictionary containing data on diferent credir card objects."""
 
     def __init__(self, filename):
         """Initializes object and lets user know."""
