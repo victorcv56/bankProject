@@ -1,4 +1,4 @@
-from writer import write_data as l
+from writer import data_writer as l
 # writer is imported so information on cards is written to a .txt
 # file and easily accesed by user. 
 # Information like how many months it will take to pay credit card, 
