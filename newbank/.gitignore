@@ -1,3 +1,2 @@
 *.txt
-Wells.txt 
-*pycache*
+**/__pycache__/
