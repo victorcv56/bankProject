@@ -41,4 +41,3 @@ class data_writer:
         f = open(self.filename, 'r')
         print(f.read())
         f.close()
-
