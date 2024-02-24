@@ -49,11 +49,10 @@ class bankCards:
     
     # added new argument for better handling of balances
     # # and dont want card balance to be used.
-    # def make_paymt(self, payment, newbal):
-    #     """Method that will make a payment towards card balance."""
-    #     temp_bal = self.get_bal()
-    #     temp_bal -= payment
+    def make_paymt(self, payment, newbal):
+        """Method that will make a payment towards card balance."""
         # subtracts payment passed to method from total balance.
+        self.bal -= payment
     
     def add_late_fee(self):
         """Add late fee to balance if client does not pay."""
@@ -93,8 +92,7 @@ class bankCards:
         temp_bal = self.get_bal()
 
         # user will be asked for months(int) needed to pay off card
-        pymt = (self.bal / months) #+ self.get_monthly_interest()
-        print("payment is {}".format(pymt))
+        pymt = (temp_bal / months) + self.get_monthly_interest()
         # payment will be calculated by dividing balance by months given
         # and add monthly interest
         for month in range(months):
@@ -106,9 +104,8 @@ class bankCards:
             # print("Added {:.2f} interest charge to balance. Balance is now: {:.2f}\n".format(self.get_monthly_interest(), self.bal))
             if temp_bal < pymt:
                 print("If {:.2f} is paid monthly towards {} card, it will take "
-                      "{} months to pay off.".format(pymt, self.name, month))
+                    "{} months to pay off.".format(pymt, self.name, month))
                 break
-        
 
     def write_data(self):
         """A method that will create a file for card object
@@ -126,8 +123,7 @@ class bankCards:
         
         time_paid_off = "\n{} card will be paid off in {} months if only min \npayment is given.".format(self.name, self.pay_off_min_payments())
         writer.add_to_file(time_paid_off)
-        
-        
+
 # Tried creating a dictionary class to complement this object and store
 # object's information inside a nested dictionary. I will have to
 # come back with a better understanding of dictionaries for that. j

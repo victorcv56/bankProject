@@ -11,7 +11,7 @@ number_of_cards = int(input('Please enter how many cards you would like to input
 # for loop which will take input from user and automatically
 # create card objects to add to list.
 for card in range(number_of_cards):
-    card_name = input('Name of card: ')
+    card_name = input('Name of card: ').capitalize()
     card_apr = input('Card APR: ')
     card_bal = input('Card balance: ')
     print() # print an empty line for easy readability
@@ -34,13 +34,9 @@ print("------------------------------")
 # for loop reads card object and displays information for user
 # on total interest to pay on cards
 for card in card_list:
-    print("{} card total interest: ${:.2f}".format(card.name, card.get_total_interest()))
-    
+    print("{} card total interest: ${:.2f}".format(card.name, card.get_total_interest()))    
     # write info data of cards into .txt file
     card.write_data()
-#
-    #
-print('bal after writing data: {}'.format(card.get_bal()))
 
 def payOffFirst(cards):
     """Method will compare card APRs and decide which one user should 
@@ -57,13 +53,14 @@ def payOffFirst(cards):
     for card in cards:
         if temp_apr == card.apr:
             print("Pay off {} card first.".format(card.name))
-
+            card.pay_off_in_given_time()
 
 payOffFirst(card_list)
-# Add time methods? learn python time lib to be able to assimilate to 
-# an actual app that keeps track of time to be able to use missed payment
-# and late fees. 
 
-for card in card_list:
-    # want to see if i can apply method to each card inside list.
-    card.pay_off_in_given_time()
+# for card in card_list:
+#     # want to see if i can apply method to each card inside list.
+#     card.pay_off_in_given_time()
+
+# for card in card_list:
+#     """only for printing purposes to see if balance is affected"""
+#     print(card)
