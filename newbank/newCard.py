@@ -1,4 +1,5 @@
 from writer import data_writer as l
+import payOffCard
 # writer is imported so information on cards is written to a .txt
 # file and easily accesed by user. 
 # Information like how many months it will take to pay credit card, 
@@ -16,14 +17,17 @@ class bankCards:
         self.apr = cardApr  
         self.bal = cardBal
         # do i want to instantiate logger here or make a method...
-        # or i could make a method that would write everything at once...
-        
+        # or i could make a method that would write everything at once...        
 
     def __str__(self):
         """String function that will print out 
         a brief description of object."""
         return "{} card has {} balance with {}% APR.\n".format(self.name, self.bal, self.apr) 
         
+    def set_bal(self, newbal):
+        """Set card balance to user's input"""
+        self.bal = newbal
+
     def get_apr(self):
         """Return card object's apr."""
         return self.apr
@@ -35,10 +39,6 @@ class bankCards:
     def get_name(self):
         """Return card object's name."""
         return self.name
-    
-    def set_bal(self, newbal):
-        """Set card balance to user's input"""
-        self.bal = newbal
 
     def get_total_interest(self):
         """Calculates total interest charge on credit card."""
@@ -68,8 +68,6 @@ class bankCards:
         min_payment = (self.get_bal() * 0.01) + self.get_monthly_interest()  
         return min_payment
 
-        return months
-
     def write_data(self):
         """A method that will create a file for card object
         and write information for card in a new text file."""
@@ -84,7 +82,7 @@ class bankCards:
         minimum_pymt = "\nYour {} card's minimum payment is {:.2f}".format(self.name, self.get_minimum_pymt())
         writer.add_to_file(minimum_pymt)
         
-        time_paid_off = "\n{} card will be paid off in {} months if only min \npayment is given.".format(self.name, self.pay_off_min_payments())
+        time_paid_off = "\n{} card will be paid off in {} months if only min \npayment is given.".format(self.name, payOffCard.pay_off_min_payments())
         writer.add_to_file(time_paid_off)
 
 # Tried creating a dictionary class to complement this object and store
