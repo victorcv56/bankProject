@@ -1,4 +1,3 @@
-from writer import data_writer as l
 import payOffCard
 # writer is imported so information on cards is written to a .txt
 # file and easily accesed by user. 
@@ -68,22 +67,6 @@ class bankCards:
         min_payment = (self.get_bal() * 0.01) + self.get_monthly_interest()  
         return min_payment
 
-    def write_data(self):
-        """A method that will create a file for card object
-        and write information for card in a new text file."""
-        filename = "{}.txt".format(self.name)
-        # initialize writer object 
-        writer = l(filename)
-        
-        # storing data in variables to write to file 
-        card_data = "{} card has {} balance with {}% APR.\n".format(self.name, self.bal, self.apr) 
-        writer.write_to_file(card_data)
-        
-        minimum_pymt = "\nYour {} card's minimum payment is {:.2f}".format(self.name, self.get_minimum_pymt())
-        writer.add_to_file(minimum_pymt)
-        
-        time_paid_off = "\n{} card will be paid off in {} months if only min \npayment is given.".format(self.name, payOffCard.pay_off_min_payments())
-        writer.add_to_file(time_paid_off)
 
 # Tried creating a dictionary class to complement this object and store
 # object's information inside a nested dictionary. I will have to

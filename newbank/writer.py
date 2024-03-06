@@ -1,4 +1,6 @@
 import json # import to write dicitonary to .txt 
+import payOffCard
+# from newCard import bankCards as card
 """An attempt to create a filewriter object to be able to document all credit card objects."""
 
 class data_writer:
@@ -41,3 +43,19 @@ class data_writer:
         f = open(self.filename, 'r')
         print(f.read())
         f.close()
+
+    def write_data(self, card):
+        
+        """A method that will create a file for card object
+        and write information for card in a new text file."""
+        # initialize writer object 
+        
+        # storing data in variables to write to file 
+        card_data = "{} card has {} balance with {}% APR.\n".format(card.get_name(), card.get_bal(), card.get_apr()) 
+        self.write_to_file(card_data)
+        
+        minimum_pymt = "\nYour {} card's minimum payment is {:.2f}".format(card.get_name(), card.get_minimum_pymt())
+        self.add_to_file(minimum_pymt)
+        
+        time_paid_off = "\n{} card will be paid off in {} months if only min \npayment is given.".format(card.get_name(), payOffCard.pay_off_min_payments())
+        self.add_to_file(time_paid_off)

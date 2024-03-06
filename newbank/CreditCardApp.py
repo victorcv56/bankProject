@@ -1,12 +1,12 @@
 from newCard import bankCards as cc
 from create_dictionary import cardList as li
+from writer import data_writer as log
 import payOffCard
 
 # need new ideas for credit card project in order to be able to advance 
 # it further with better ideas and not just basic python.
 
 card_list = [] # instantiating empty list to fill with card objects
-
 number_of_cards = int(input('Please enter how many cards you would like to input: '))
 
 # for loop which will take input from user and automatically
@@ -37,4 +37,8 @@ print("------------------------------")
 for card in card_list:
     print("{} card total interest: ${:.2f}".format(card.name, card.get_total_interest()))    
     # write info data of cards into .txt file
-    card.write_data()
+    print(type(card))
+    log.write_data(card)
+    
+for card in card_list:
+    payOffCard.pay_off_in_given_time(card)

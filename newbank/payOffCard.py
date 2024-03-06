@@ -55,4 +55,4 @@ def payOffFirst(cards):
     for card in cards:
         if temp_apr == card.apr:
             print("Pay off {} card first.".format(card.name))
-            card.payOffCard.pay_off_in_given_time()
+            card.pay_off_in_given_time()

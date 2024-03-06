@@ -8,7 +8,6 @@ class cardList:
     def __init__(self):
         """Initializes an empty dictionary that will be filled
         by user."""
-        # self.card_list = card_list
         self.cards = {} # initialize an empty dictionary
 
     def add_to_nested(self, card_list): 
