@@ -25,5 +25,4 @@ class cardList:
 
     def show_dictionary(self):
         """Print dictionary to screen."""
-        pprint.pprint(self.cards)    
-    
+        pprint.pprint(self.cards)
