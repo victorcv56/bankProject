@@ -9,7 +9,7 @@ def pay_off_min_payments(card):
         # calls on the make payment method to simulate a payment being made            
         temp_bal -= min_payment
         # will add monthly fee on credit card
-        temp_bal += card.get_monthly_interest(temp_bal)
+        temp_bal += card.get_monthly_interest() 
         # add 1 every iteration to months var to simulate monthly payments
         months += 1
         # print('Remaining balance: {:.2f}'.format(card.bal))
@@ -31,12 +31,13 @@ def pay_off_in_given_time(card):
         temp_bal -= pymt 
         # makes payment towards balance
         print("Made payment of {:.2f}, balance is now: {:.2f}".format(pymt, temp_bal))
-        temp_bal += card.get_monthly_interest() 
+        temp_interest = (temp_bal * (card.get_apr() / 100) / 12)
+        temp_bal += temp_interest 
         # adds in monthly interest fee every iteration
-        print("Added {:.2f} interest charge to balance. Balance is now: {:.2f}\n".format(card.get_monthly_interest(), temp_bal))
+        print("Added {:.2f} interest charge to balance. Balance is now: {:.2f}\n".format(temp_interest, temp_bal))
         if temp_bal < pymt:
             print("If {:.2f} is paid monthly towards {} card, it will take "
-                "{} months to pay off.".format(pymt, card.name, month))
+                "{} months to pay off.".format(pymt, card.name, month+1))
             break
 
 

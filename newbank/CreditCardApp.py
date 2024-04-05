@@ -6,8 +6,6 @@ import payOffCard
 # need new ideas for credit card project in order to be able to advance 
 # it further with better ideas and not just basic python.
 
-# instantiating create_dictionary class
-card_dict = li() 
 
 card_list = [] # instantiating empty list to fill with card objects
 number_of_cards = int(input('Please enter how many cards you would like to input: '))
@@ -26,9 +24,11 @@ for card in range(number_of_cards):
     # add card object to list
     card_list.append(card_obj)
 
+# instantiating create_dictionary class
+card_dict = li() 
+
 # instantiating writer method
 log = data_writer("{}.txt".format(card_name))
-
 
 # create dictionary by passing list of cards to dictionary class
 card_dict.add_to_nested(card_list) 
