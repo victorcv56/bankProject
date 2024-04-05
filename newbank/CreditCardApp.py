@@ -14,8 +14,17 @@ number_of_cards = int(input('Please enter how many cards you would like to input
 # create card objects to add to list.
 for card in range(number_of_cards):
     card_name = input('Name of card: ').capitalize()
-    card_apr = input('Card APR: ')
-    card_bal = input('Card balance: ')
+
+    try: 
+        card_apr = input('Card APR: ')
+    except ValueError:
+        print("Not a valid number.")    
+
+    try:
+        card_bal = input('Card balance: ')
+    except ValueError:
+        print("Not a valid number.")
+
     print() # print an empty line for easy readability
 
     # using float conversion for card numbers to make
